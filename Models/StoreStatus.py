@@ -7,6 +7,6 @@ class StoreStatus(Base):
     __tablename__ = 'store_status'
 
     id = Column(Integer, primary_key=True, index=True)
-    store_id = Column(String)
+    store_id = Column(Integer)
     status = Column(String)
     timestamp_utc = Column(DateTime)

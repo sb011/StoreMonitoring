@@ -7,7 +7,8 @@ class BusinessHours(Base):
     __tablename__ = 'business_hours'
 
     id = Column(Integer, primary_key=True, index=True)
-    store_id = Column(String)
-    day = Column(int)
+    # store_id is bigint in the database
+    store_id = Column(Integer)
+    day = Column(Integer)
     start_time_local = Column(Time)
     end_time_local = Column(Time)

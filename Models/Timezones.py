@@ -7,5 +7,5 @@ class Timezones(Base):
     __tablename__ = 'timezones'
 
     id = Column(Integer, primary_key=True, index=True)
-    store_id = Column(String)
+    store_id = Column(Integer)
     timezone_str = Column(DateTime)
