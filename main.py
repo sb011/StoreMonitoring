@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes.report_routes import router as report_routes
+from Routes.ReportRoutes import router as report_routes
 
 app = FastAPI()
 app.include_router(report_routes)

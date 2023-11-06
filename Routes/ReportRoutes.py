@@ -1,12 +1,12 @@
 from fastapi import APIRouter
-from services import report_service
+from Services import ReportService
 
 router = APIRouter()
 
 @router.post("/trigger_report")
 def trigger_report():
-    return report_service.trigger_report()
+    return ReportService.trigger_report()
 
 @router.get("/get_report/{report_id}")
 def get_report(report_id: str):
-    return report_service.get_report(report_id)
+    return ReportService.get_report(report_id)

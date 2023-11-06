@@ -9,3 +9,4 @@ class Reports(Base):
     id = Column(Integer, primary_key=True, index=True)
     report_file = Column(String)
     status = Column(String)
+    url = Column(String)
