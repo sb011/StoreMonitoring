@@ -12,10 +12,8 @@ def trigger_report():
     report.report_file = f"report_{report_id}.csv"
     ReportRepository.update_report(report)
 
-    t = threading.Thread(target=generate_report, args=(report,))
-    t.start()
-    t.join()
-    
+    url = generate_report(report)
+    report.url = url
     report.status = ReportTypes.Completed.value
     ReportRepository.update_report(report)
     return {"report_id": report_id}

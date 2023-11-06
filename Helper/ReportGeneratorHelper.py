@@ -1,8 +1,10 @@
+import os
 import pytz
+import pandas as pd
 from datetime import datetime, timedelta
 from Repositories import ReportRepository
 from Models.Reports import Reports
-import pandas as pd
+from CloudinaryHelper import upload_file
 
 def generate_report(report: Reports):
     end_date = datetime.utcnow()
@@ -14,11 +16,17 @@ def generate_report(report: Reports):
     timezones = ReportRepository.get_timezones()
     
     results = []
-    # for store_id in store_ids:
-    results.append(calculate_uptime_downtime(1481966498820158979, business_hours, store_status, timezones, start_date, end_date))
+    for store_id in store_ids:
+        results.append(calculate_uptime_downtime(store_id, business_hours, store_status, timezones, start_date, end_date))
 
     df = pd.DataFrame(results)
     df.to_csv(report.report_file, index=False)
+
+    url = upload_file(report.report_file).url
+    os.remove(report.report_file)
+
+    return url
+
 
 def calculate_uptime_downtime(store_id: str, business_hours: list, store_status: list, timezones: list, start_date: datetime, end_date: datetime):    
     store_business_hours = [x for x in business_hours if x.store_id == store_id]
