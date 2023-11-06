@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from Routes.ReportRoutes import router as report_routes
 
 app = FastAPI()
+# Add the report routes to the app
 app.include_router(report_routes)
 
 if __name__ == "__main__":

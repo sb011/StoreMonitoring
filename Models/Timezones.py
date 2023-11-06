@@ -3,6 +3,16 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+"""
+    Timezones model
+
+    This model is used to represent the timezones.
+
+    Attributes:
+        id (int): The id of the timezone
+        store_id (int): The id of the store
+        timezone_str (DateTime): The timezone of the store
+"""
 class Timezones(Base):
     __tablename__ = 'timezones'
 

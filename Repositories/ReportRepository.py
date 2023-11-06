@@ -5,6 +5,15 @@ from Models.StoreStatus import StoreStatus
 from Models.Timezones import Timezones
 from Config.DBConnection import Session
 
+"""
+    This function is used to get the report by id.
+
+    Args:
+        report_id (str): The id of the report
+
+    Returns:
+        report (Reports): The report
+"""
 def get_report(report_id: str):
     db = Session()
     try:
@@ -13,6 +22,12 @@ def get_report(report_id: str):
     finally:
         db.close()
 
+"""
+    This function is used to post the report.
+
+    Args:
+        status (str): The status of the report
+"""
 def update_report(report: Reports):
     db = Session()
     try:
@@ -21,6 +36,12 @@ def update_report(report: Reports):
     finally:
         db.close() 
 
+"""
+    This function is used to get the business hours.
+
+    Returns:
+        business_hours (BusinessHours): The business hours
+"""
 def get_business_hours():
     db = Session()
     try:
@@ -29,6 +50,16 @@ def get_business_hours():
     finally:
         db.close()
 
+"""
+    This function is used to get the store status.
+
+    Args:
+        start_date (DateTime): The start date
+        end_date (DateTime): The end date
+
+    Returns:
+        store_status (StoreStatus): The store status
+"""
 def get_store_status(start_date, end_date):
     db = Session()
     try:
@@ -37,6 +68,12 @@ def get_store_status(start_date, end_date):
     finally:
         db.close()
 
+"""
+    This function is used to get all the store id.
+
+    Returns:
+        store_ids (Tuple): The store ids
+"""
 def get_store_ids():
     db = Session()
     try:
@@ -45,6 +82,12 @@ def get_store_ids():
     finally:
         db.close()
 
+"""
+    This function is used to get the timezones.
+
+    Returns:
+        timezones (Timezones): The timezones
+"""
 def get_timezones():
     db = Session()
     try:
