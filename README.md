@@ -39,12 +39,12 @@ RETURN CSV
         * convert the timestamp_utc to local
         * Iterate through business hours
           * check if the day of the week is the same for the status and business hours
-            * get the start and end time of the business hours and convert it to local time
+            * Get the start and end time of the business hours and convert it to local time
             * case 1: last_hour_local is in working hours and current_time_local is in working hours
-              * find the next active status which is between the last hour and add the minutes to the downtime
+              * Find the next active status which is between the last hour and add the minutes to the downtime
               * else add all the minutes from status local time to last hour end
             * case 2: last_hour_local is in working hours and current_time_local is not in working hours
-              * find the next active status which is between the last hour and the end of working hours and add the minutes to the downtime
+              * Find the next active status which is between the last hour and the end of working hours and add the minutes to the downtime
               * else add all the minutes from status local time to last hour end
   * downtime_last_day
     * Get the current time for the store's local time
@@ -53,8 +53,8 @@ RETURN CSV
       * check if the status is inactive
         * convert the timestamp_utc to local
         * Iterate through business hours
-          * case 1: status_timestamp_local is in working hours count the minutes from the timestamp to the next active status which should be less than end_local and greater than start_local
-            * find the next active status which is between the last day working hour and add the minutes to the downtime
+          * case 1: status_timestamp_local is in working hours
+            * Find the next active status which is between the last day's working hours and add the minutes to the downtime
             * else add all the minutes from status local time to last hour end
   * downtime_last_week
     * Get the current time for the store's local time
@@ -63,28 +63,34 @@ RETURN CSV
       * check if the status is inactive
         * convert the timestamp_utc to local
         * Iterate through business hours
-          * case 1: status_timestamp_local is in working hours and count the minutes from the timestamp to next active status which should be less than end_local and greater than start_local
-            * find the next active status which is between the last weeks business hour and add the minutes to the downtime
+          * case 1: status_timestamp_local is in working hours
+            * Find the next active status which is between the last week's business hours and add the minutes to the downtime
             * else add all the minutes from status local time to last hour end
   * uptime_last_hour
     * Get the current time for the store's local time
     * Get the last week from the current time
     * Iterate through business hours
-      * check if the day of week is the same for the business hours and last hour
+      * check if the day of the week is the same for the business hours and the last hour
         * case1: one_hour_ago_local is in working hours and current_time_local is in working hours
+          * return 60
         * case2: one_hour_ago_local is in working hours and current_time_local is not in working hours
+          * return minutes from the start of one hour to the end working hour  
         * case3: one_hour_ago_local is not in working hours and current_time_local is in working hours
+          * return minutes from the start of local time to the current working hour  
         * case4: one_hour_ago_local is not in working hours and current_time_local is not in working hours
+          * return 0
     * subtract from uptime_last_hour to downtime_last_hour
   * uptime_last_day
     * Get the current time for the store's local time
     * Get the last week from the current time
     * Iterate through business hours
-      * check if the day of week is the same for the business hours and last day
-        * add all the time from end business hour to start business hour
+      * check if the day of the week is the same for the business hours and the last day
+        * add all the time from the end business hour to the start business hour
+      * subtract from uptime_last_hour to downtime_last_day
   * uptime_last_week
     * Get the current time for the store's local time
     * Get the last week from the current time
     * Iterate through business hours
-      * add all the time from end business hour to start business hour
+      * add all the time from the end business hour to the start business hour
+    * subtract from uptime_last_hour to downtime_last_week
   
