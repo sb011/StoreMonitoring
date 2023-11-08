@@ -46,6 +46,14 @@ GET /get_report/{report_id}
 RETURN { status: <STATUS>, url: <URL>}
 ```
 
+# Functionalities
+* Multithreading
+* File Upload
+
+# Additional Enhancements
+* Add caching
+* More optimize the report generation and make it faster
+
 # Logic of generating a report
 1. Downtime for the last hour
    1. Find Current and Last Hour:
