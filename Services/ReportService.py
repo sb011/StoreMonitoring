@@ -1,4 +1,7 @@
+import os
 import uuid
+
+from fastapi.responses import FileResponse
 from Enums.ReportTypes import ReportTypes
 from Models.Reports import Reports
 from Repositories import ReportRepository
@@ -15,9 +18,9 @@ def trigger_report():
     report = Reports()
 
     # Set the report status to running
-    report_id = uuid.uuid4()
+    report.id = uuid.uuid4()
     report.status = ReportTypes.Running.value
-    report.report_file = f"report_{report_id}.csv"
+    report.report_file = f"report_{report.id}.csv"
     ReportRepository.update_report(report)
 
     # Generate the report
@@ -27,7 +30,7 @@ def trigger_report():
     report.url = url
     report.status = ReportTypes.Completed.value
     ReportRepository.update_report(report)
-    return {"report_id": report_id}
+    return {"report_id": report.id}
 
 """
     This function is used to get the report by id.
@@ -49,4 +52,13 @@ def get_report(report_id: str):
     if report.status == "Running":
         return {"status": "Running"}
     
-    return {"status": "Completed", "report": report}
+    return {"status": "completed", "report": report}
+    # return the report from csv folder
+    # csv_file_path = f"{report.report_file}"
+
+    # # Check if the CSV file exists
+    # if os.path.exists(csv_file_path):
+    #     # Return the CSV file as a response along with the status
+    #     return {"status": "completed", "csv_file": FileResponse(csv_file_path, filename=report.report_file, media_type="text/csv")}
+    # else:
+    #     return {"error": "CSV file not found"}

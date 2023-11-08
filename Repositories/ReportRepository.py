@@ -69,20 +69,6 @@ def get_store_status(start_date, end_date):
         db.close()
 
 """
-    This function is used to get all the store id.
-
-    Returns:
-        store_ids (Tuple): The store ids
-"""
-def get_store_ids():
-    db = Session()
-    try:
-        store_ids = db.query(StoreStatus.store_id).distinct()
-        return store_ids
-    finally:
-        db.close()
-
-"""
     This function is used to get the timezones.
 
     Returns:

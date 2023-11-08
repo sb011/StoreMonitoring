@@ -17,7 +17,7 @@ Base = declarative_base()
 class Reports(Base):
     __tablename__ = 'reports'
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     report_file = Column(String)
     status = Column(String)
     url = Column(String)

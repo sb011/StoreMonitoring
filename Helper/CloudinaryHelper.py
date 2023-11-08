@@ -1,4 +1,5 @@
 import cloudinary
+import cloudinary.uploader
 
 """
     This function uploads the file to cloudinary and returns the result
@@ -11,13 +12,15 @@ import cloudinary
 """
 def upload_file(file_name):
     cloudinary.config(
-        cloud_name = "dgg7j9b5l",
-        api_key = "314265242467722",
-        api_secret = "O3qkLj4XZQ8YJ6jyqX4n0J6IyXU"
+        cloud_name = "dh96vxa5a",
+        api_key = "578815199169335",
+        api_secret = "8idcNXHGUqfQGU9GvSrMDKSYpck"
     )
+
     upload_result = None
     try:
-        upload_result = cloudinary.uploader.upload(file_name)
+        upload_result = cloudinary.uploader.upload(file_name, resource_type = "auto")
     except:
         return {"Error": "File upload failed"}
-    return upload_result
+    
+    return upload_result["url"]
