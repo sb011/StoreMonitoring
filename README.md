@@ -22,6 +22,9 @@ python -m venv env
 pip install -r requirements.txt
 ```
 
+# Data dump
+* Created the notebook and added the script to dump data into the database, including the database connection, table creation, and data inserting into tables.
+
 # Data sources
 1. Restaurant status
 `store_id, timestamp_utc, status`
