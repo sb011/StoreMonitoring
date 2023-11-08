@@ -4,6 +4,24 @@ The Restaurant Status Monitoring API is a backend service designed to help resta
 # Tech stack
 * Fast API
 
+# Local Setup
+1. Git clone
+```
+git clone https://github.com/sb011/StoreMonitoring.git
+```
+2. Make an environment
+```
+python -m venv env
+```
+3. Use that environment
+```
+.\env\Scripts\activate
+```
+4. Install the requirements
+```
+pip install -r requirements.txt
+```
+
 # Data sources
 1. Restaurant status
 `store_id, timestamp_utc, status`
