@@ -43,7 +43,7 @@ RETURN report_id
 2. Get a report
 ```
 GET /get_report/{report_id}
-RETURN CSV
+RETURN { status: <STATUS>, url: <URL>}
 ```
 
 # Logic of generating a report
