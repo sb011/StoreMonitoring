@@ -52,13 +52,4 @@ def get_report(report_id: str):
     if report.status == "Running":
         return {"status": "Running"}
     
-    return {"status": "completed", "report": report}
-    # return the report from csv folder
-    # csv_file_path = f"{report.report_file}"
-
-    # # Check if the CSV file exists
-    # if os.path.exists(csv_file_path):
-    #     # Return the CSV file as a response along with the status
-    #     return {"status": "completed", "csv_file": FileResponse(csv_file_path, filename=report.report_file, media_type="text/csv")}
-    # else:
-    #     return {"error": "CSV file not found"}
+    return {"status": "completed", "report": report.url}
