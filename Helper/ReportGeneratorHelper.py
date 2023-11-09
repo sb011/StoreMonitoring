@@ -3,6 +3,7 @@ import pytz
 import concurrent.futures
 import pandas as pd
 from datetime import datetime, timedelta
+from Enums.ReportTypes import ReportTypes
 from Repositories import ReportRepository
 from Models.Reports import Reports
 from Helper.CloudinaryHelper import upload_file
@@ -27,7 +28,8 @@ def generate_report(report: Reports):
 
     # make list of store unique ids
     store_ids = list(set([x.store_id for x in business_hours]))
-    
+    # store_ids = [2567728765809290933]
+
     # calculate the uptime and downtime
     results = []
     # Using ThreadPoolExecutor to parallelize the for loop
@@ -40,14 +42,17 @@ def generate_report(report: Reports):
     # save the results to a csv file and store it in csv folder
     df = pd.DataFrame(results)
     df.to_csv(report.report_file, index=False)
-
+    
     # upload the file to cloudinary
     url = upload_file(report.report_file)
-
+    
     # remove the file from the csv folder
     os.remove(report.report_file)
 
-    return url
+    report.url = url
+    report.status = ReportTypes.Completed.value
+    ReportRepository.update_report(report)
+
 
 """
     This function calculates the uptime and downtime for a store

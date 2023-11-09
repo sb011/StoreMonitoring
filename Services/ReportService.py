@@ -1,4 +1,4 @@
-import os
+import threading
 import uuid
 
 from fastapi.responses import FileResponse
@@ -25,12 +25,9 @@ def trigger_report():
         ReportRepository.update_report(report)
 
         # Generate the report
-        url = generate_report(report)
+        task = threading.Thread(target = generate_report, args = (report,))
+        task.start()
 
-        # Update the report to completed
-        report.url = url
-        report.status = ReportTypes.Completed.value
-        ReportRepository.update_report(report)
         return {"report_id": report.id}
     except:
         return {"Error": "Report generation failed"}
@@ -53,7 +50,7 @@ def get_report(report_id: str):
             return {"Error": "Report not found"}
         
         # Check if the report is running
-        if report.status == "Running":
+        if report.status == ReportTypes.Running.value:
             return {"status": "Running"}
         
         return {"status": "completed", "report": report.url}
