@@ -58,7 +58,7 @@ RETURN { status: <STATUS>, url: <URL>}
 * More optimize the report generation and make it faster
 
 # Video
-[Video](https://www.loom.com/share/ea88a16c16df45f68b90c6b6b0d812a8?sid=911b01fe-cad3-49e4-b7b5-45fc2bd3fd68)
+[Video](https://www.loom.com/share/cf6168d3593a439e829504e219981bc4?sid=511def68-8490-4307-a14b-ceafd4071d96)
 
 # Logic of generating a report
 1. Downtime for the last hour
