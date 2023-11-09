@@ -53,9 +53,12 @@ RETURN { status: <STATUS>, url: <URL>}
 * Multithreading
 * File Upload
 
-# Additional Enhancements
+# Additional Enhancements (if I had more time)
 * Add caching
 * More optimize the report generation and make it faster
+
+# Video
+[Video](https://www.loom.com/share/ea88a16c16df45f68b90c6b6b0d812a8?sid=911b01fe-cad3-49e4-b7b5-45fc2bd3fd68)
 
 # Logic of generating a report
 1. Downtime for the last hour
